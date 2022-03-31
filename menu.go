@@ -9,8 +9,22 @@ import (
 /*
   function to list the menu items
 */
-func showMenu() {
+func showMenu(menu string) {
+	switch menu {
+	default:
+		showMainMenu()
+	case "REPORTS":
+		showReportsMenu()
+	}
 
+}
+
+func showMainMenu() {
+	// clear the screen (i.e. stdout)
+	clearScreen()
+	fmt.Println("===============================")
+	fmt.Println("= Shopping List Application   =")
+	fmt.Println("===============================")
 	fmt.Println("1. View entire shopping list")
 	fmt.Println("2. Generate Shopping List Report")
 	fmt.Println("3. Add Item")
@@ -24,9 +38,24 @@ func showMenu() {
 }
 
 /*
+	function to list the Generate Report menu items
+*/
+func showReportsMenu() {
+	clearScreen()
+	fmt.Println("-------------------------------")
+	fmt.Println("- Generate Report             -")
+	fmt.Println("-------------------------------")
+	fmt.Println("1. Total Cost of each category.")
+	fmt.Println("2. List of item by category.")
+	fmt.Println("3. Main Menu")
+	fmt.Println("")
+	fmt.Printf("Choose your report : ")
+}
+
+/*
   function to check if the input (from user) is a menu item listed
 */
-func check(choice rune) (bool, string) {
+func check(menu *string, choice rune) (bool, string) {
 	var message string
 	var outcome bool
 
@@ -60,13 +89,14 @@ func getInput() rune {
 	function to redirect to the respective
 	data handlers
 */
-func redirect(selected rune) {
+func redirectTo(menu string, selected rune) {
 	switch selected {
 	case rune('1'):
 		fmt.Println("You have selected 1")
 
 	case rune('2'):
-		fmt.Println("You have selected 2")
+		// fmt.Println("You have selected 2")
+		showMenu("REPORTS")
 	case rune('3'):
 		fmt.Println("You have selected 3")
 	case rune('4'):

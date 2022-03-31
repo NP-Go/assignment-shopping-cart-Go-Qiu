@@ -7,24 +7,24 @@ import (
 func main() {
 	var choice rune
 	var validChoice bool = false
+	var activeMenu string = "MAIN"
 
 	for !validChoice {
 		// show the menu
-		showMenu()
+		showMenu(activeMenu)
 
 		// get the ascii value of the input from user (via stdin)
 		choice = getInput()
-
-		ok, message := check(choice)
-		if ok && message == "Ok" {
+		valid, message := check(&activeMenu, choice)
+		if valid && message == "Ok" {
 			// break from this infinite loop
 			// and call the associated function
-			validChoice = ok
+			validChoice = valid
 
-		} else if ok && message != "Ok" {
+		} else if valid && message != "Ok" {
 			// break from this infinite loop
 			// and end.
-			validChoice = ok
+			validChoice = valid
 			fmt.Println(message)
 			fmt.Println("")
 		} else {
@@ -35,6 +35,7 @@ func main() {
 	}
 
 	// act on the valid choice
-	redirect(choice)
+
+	redirectTo(activeMenu, choice)
 	//
 }
