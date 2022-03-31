@@ -6,10 +6,10 @@ import (
 
 func main() {
 	var choice rune
-	var validChoice bool = false
+	var canExit bool = false
 	var activeMenu string = "MAIN"
 
-	for !validChoice {
+	for !canExit {
 		// show the menu
 		showMenu(activeMenu)
 
@@ -19,14 +19,19 @@ func main() {
 		if valid && message == "Ok" {
 			// break from this infinite loop
 			// and call the associated function
-			validChoice = valid
+			canExit = valid
+
+		} else if valid && message != "Ok" && activeMenu == "REPORTS" {
+			// '2' was selected
+			// show the Reports menu items
+			showMenu(activeMenu)
 
 		} else if valid && message != "Ok" {
+			// '0' was selected
 			// break from this infinite loop
 			// and end.
-			validChoice = valid
-			fmt.Println(message)
-			fmt.Println("")
+			canExit = valid
+
 		} else {
 			fmt.Println(message)
 			fmt.Println("")

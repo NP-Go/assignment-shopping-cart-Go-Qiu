@@ -58,17 +58,40 @@ func showReportsMenu() {
 func check(menu *string, choice rune) (bool, string) {
 	var message string
 	var outcome bool
+	if *menu == "REPORTS" {
+		// "REPORTS"
+		if choice == rune('3') {
+			outcome = true
+			message = "Return to Main menu."
+			*menu = "MAIN"
+		} else if choice >= rune('1') && choice <= rune('2') {
+			outcome = true
+			message = "Ok"
+		} else {
+			outcome = false
+			message = "Your choice must be between 1 and 3."
+		}
 
-	if choice > rune('0') && choice <= rune('7') {
-		outcome = true
-		message = "Ok"
-	} else if choice == rune('0') {
-		outcome = true
-		message = "Have a good day.  Bye-bye."
 	} else {
-		outcome = false
-		message = "Your choice must be between 0 and 7."
+		// "MAIN" menu
+		if choice == rune('2') {
+			outcome = true
+			message = "Go into Reports menu."
+			*menu = "REPORTS"
+		} else if choice == rune('0') {
+			outcome = true
+			message = "Have a good day.  Bye-bye."
+		} else if choice == rune('1') ||
+			(choice >= rune('3') && choice <= rune('7')) {
+			outcome = true
+			message = "MAIN"
+		} else {
+			outcome = false
+			message = "Your choice must be between 0 and 7."
+		}
+		//
 	}
+
 	return outcome, message
 }
 
@@ -93,10 +116,6 @@ func redirectTo(menu string, selected rune) {
 	switch selected {
 	case rune('1'):
 		fmt.Println("You have selected 1")
-
-	case rune('2'):
-		// fmt.Println("You have selected 2")
-		showMenu("REPORTS")
 	case rune('3'):
 		fmt.Println("You have selected 3")
 	case rune('4'):
