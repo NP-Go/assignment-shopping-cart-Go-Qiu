@@ -115,7 +115,8 @@ func getInput() rune {
 func redirectTo(menu string, selected rune) {
 	switch selected {
 	case rune('1'):
-		fmt.Println("You have selected 1")
+		// fmt.Println("You have selected 1")
+		showShoppingList()
 	case rune('3'):
 		fmt.Println("You have selected 3")
 	case rune('4'):
