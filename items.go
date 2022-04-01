@@ -73,3 +73,19 @@ func updateItem(updatedItem Item) (bool, error) {
 
 	return true, nil
 }
+
+/*
+	function to find the first matching element (by name)
+	and return the element index.
+	if no matching element is found, return -1.
+*/
+func findFirstMatch(list *[]Item, name string) int {
+	for i, element := range *list {
+
+		if element.name == name {
+			return i
+		}
+	}
+
+	return -1
+}
