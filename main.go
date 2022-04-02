@@ -9,8 +9,9 @@ func main() {
 	var canExit bool = false
 	var activeMenu string = "MAIN"
 
-	// pre-load the shopping list items
-	preloadShoppingList()
+	// execute all the preloading activities
+	preloadDefaultCategories() // categories
+	preloadShoppingList()      // shopping list
 
 	for !canExit {
 		// show the menu
