@@ -24,6 +24,10 @@ func clearScreen() {
 	}
 }
 
+/*
+	function to clear the the screen (macOS, windows or linux)
+*/
+
 func clearStdOut(command string) {
 	cmd := exec.Command(command)
 	cmd.Stdout = os.Stdout
@@ -68,7 +72,13 @@ func inputIsValidIntegerValue(input *string, requiredPositive bool, inputName st
 	}
 }
 
-func inputIsValidLookupValue(input *string, inputName string, lookupData *[]intKeyValuePair) (bool, string) {
+/*
+	function to check if the input value (string) is valid and has a matcing key with respect
+	to the keys (slice) in the lookup data.
+	return true (and message) when input value is valid and has a match
+	return false (and message) when input value is not valid or has not got a match
+*/
+func inputIsValidLookupValueCheck(input *string, inputName string, lookupData *[]intKeyValuePair) (bool, string) {
 	var tag string
 	entry, err := strconv.Atoi(*input)
 
@@ -108,10 +118,21 @@ func getLookupKeys(lookupData []intKeyValuePair) []int {
 }
 
 /*
+	function to get all the values (in a slice) of a specific lookup data slice
+*/
+func getLookupValues(lookupData []intKeyValuePair) []string {
+	var values []string
+	for _, c := range lookupData {
+		values = append(values, c.value)
+	}
+	return values
+}
+
+/*
 	function to execute check on the specific input value
 	to ensure it is a valid numeric float value
 */
-func inputIsValidFloatValue(input *string, requiredPositive bool, inputName string) (bool, string) {
+func inputIsValidFloatValueCheck(input *string, requiredPositive bool, inputName string) (bool, string) {
 
 	var tag string
 	entry, err := strconv.ParseFloat(*input, 32)
@@ -146,6 +167,11 @@ func inputIsValidFloatValue(input *string, requiredPositive bool, inputName stri
 	}
 }
 
+/*
+	function to check if the input value is not an empty string
+	return true (and message) if it is not an empty string
+	return false (and message) if it is an empty string
+*/
 func inputNotEmptyCheck(input *string, inputName string) (bool, string) {
 	var tag string
 	if len(strings.TrimSpace(inputName)) != 0 {
@@ -153,15 +179,43 @@ func inputNotEmptyCheck(input *string, inputName string) (bool, string) {
 	} else {
 		tag = "Input value"
 	}
-	if len(strings.TrimSpace(*input)) == 0 {
+	if len(strings.TrimSpace(*input)) == 0 && strings.TrimSpace(inputName) != "-" {
 		// empty string
 		return false, tag + " cannot be empty."
+	} else if len(strings.TrimSpace(*input)) == 0 && strings.TrimSpace(inputName) == "-" {
+		// empty string but use 'No Input Found' message
+		return false, "No Input Found !"
 	} else {
 		// non-empty string
 		// exit from infinite loop
 
 		return true, "Ok"
 	}
+}
+
+/*
+	function to check if the input value (string) is unique
+	with respect to the existing list (slice of values)
+	return true (and message) if it is unique
+	return false (and message) if it is not unique
+*/
+func inputIsUniqueByNameCheck(input *string, s []string) (bool, string) {
+
+	message := ""
+	var isUnique bool
+
+	for i, element := range s {
+		if element == strings.TrimSpace(*input) {
+			// found, not unique
+			message = "Category : " + *input + " already exist at " + strconv.Itoa(i)
+			isUnique = false
+			break
+		} else {
+			// not found, is unique
+			isUnique = true
+		}
+	}
+	return isUnique, message
 }
 
 /*

@@ -50,7 +50,7 @@ func showAddItemScreen() {
 		// fmt.Println("(0 -> Household, 1 -> Food, 2 -> Drinks)")
 		showCategoriesLookup()
 		fmt.Scanln(&category)
-		if isValid, message := inputIsValidLookupValue(&category, "Category", &categories); !isValid {
+		if isValid, message := inputIsValidLookupValueCheck(&category, "Category", &categories); !isValid {
 			fmt.Println(message)
 			fmt.Println("")
 		} else {
@@ -80,7 +80,7 @@ func showAddItemScreen() {
 		fmt.Println("How much does it cost per unit ($)?")
 		fmt.Scanln(&unitCost)
 
-		if isValid, message := inputIsValidFloatValue(&unitCost, true, "Unit Cost"); !isValid {
+		if isValid, message := inputIsValidFloatValueCheck(&unitCost, true, "Unit Cost"); !isValid {
 			fmt.Println(message)
 		} else {
 			// passed.  exit from this infinite loop

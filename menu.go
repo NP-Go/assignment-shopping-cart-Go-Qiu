@@ -115,20 +115,27 @@ func getInput() rune {
 func redirectTo(menu string, selected rune) {
 	switch selected {
 	case rune('1'):
+		// view entire Shopping List
 		// fmt.Println("You have selected 1")
 		showShoppingList()
+	case rune('2'):
+		// generate reports
 	case rune('3'):
 		// add item
 		// fmt.Println("You have selected 3")
 		showAddItemScreen()
 	case rune('4'):
+		// modify item
 		fmt.Println("You have selected 4")
 	case rune('5'):
+		// delete item
 		fmt.Println("You have selected 5")
 	case rune('6'):
 		fmt.Println("You have selected 6")
 	case rune('7'):
-		fmt.Println("You have selected 7")
+		//add category
+		// fmt.Println("You have selected 7")
+		showAddCategoryScreen()
 	default:
 		fmt.Println("Exited Application.")
 	}
