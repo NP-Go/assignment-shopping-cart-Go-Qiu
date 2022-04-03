@@ -9,7 +9,7 @@ func showDeleteItemScreen() {
 	clearScreen()
 
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
-	fmt.Println("+ Delete Item                       +")
+	fmt.Println("+ Delete Item                          +")
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
 	fmt.Println("")
 

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"strconv"
 )
 
@@ -18,7 +17,7 @@ func showAddItemScreen() {
 	quantity := ""
 	unitCost := ""
 
-	verifiedInput := Item{}
+	verifiedInput := ItemInfo{}
 
 	// continueToLoop := true
 
@@ -38,7 +37,6 @@ func showAddItemScreen() {
 			fmt.Println(message)
 		} else {
 			// passed.  exit from this infinite loop
-			verifiedInput.name = name
 			break
 		}
 	}
@@ -85,18 +83,27 @@ func showAddItemScreen() {
 		} else {
 			// passed.  exit from this infinite loop
 			v, _ := strconv.ParseFloat(unitCost, 64)
-			verifiedInput.unitCost = math.Round(v)
-
+			verifiedInput.unitCost = v
 			break
 		}
 	}
 
 	// add item into the Shopping List
-	fmt.Println(verifiedInput)
+	// fmt.Println(verifiedInput)
+	shoppingCart[name] = verifiedInput
+
+	fmt.Println("")
+	fmt.Println("New item added.")
+	fmt.Println("---------------")
+	fmt.Printf("Category      : %s \n", getCategoryByKey(shoppingCart[name].category))
+	fmt.Printf("Item          : %s \n", name)
+	fmt.Printf("Units         : %d \n", shoppingCart[name].quantity)
+	fmt.Printf("Unit Cost ($) : %0.2f \n", shoppingCart[name].unitCost)
+
 }
 
 /*
 	function to execute checks on the specified entries
 	to ensure that input (from user via stdin) matches
-	the defined rules.
+	the defined rules."
 */
