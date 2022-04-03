@@ -42,6 +42,7 @@ func showAddCategoryScreen() {
 		fmt.Println("What is the category name to add ?")
 		fmt.Scanln(&name)
 		if hasPassed, message := inputNotEmptyCheck(&name, "-"); !hasPassed {
+			message = "No Input Found !"
 			fmt.Println(message)
 		} else if isUnique, message := inputIsUniqueByNameCheck(&name, categoriesList); !isUnique {
 			// is not unique

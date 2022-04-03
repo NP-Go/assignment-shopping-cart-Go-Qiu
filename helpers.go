@@ -184,7 +184,7 @@ func inputNotEmptyCheck(input *string, inputName string) (bool, string) {
 		return false, tag + " cannot be empty."
 	} else if len(strings.TrimSpace(*input)) == 0 && strings.TrimSpace(inputName) == "-" {
 		// empty string but use 'No Input Found' message
-		return false, "No Input Found !"
+		return false, ""
 	} else {
 		// non-empty string
 		// exit from infinite loop
@@ -227,6 +227,18 @@ func containsInt(s []int, v int) bool {
 	for _, element := range s {
 		if element == v {
 			//found
+			found = true
+			break
+		}
+	}
+	return found
+}
+
+func containsString(s []string, v string) bool {
+	found := false
+	for _, element := range s {
+		if element == v {
+			// found
 			found = true
 			break
 		}
