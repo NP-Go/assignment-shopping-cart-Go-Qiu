@@ -88,3 +88,18 @@ func printAllCategories() {
 		fmt.Println(c)
 	}
 }
+
+/*
+	function to get the category by the key
+*/
+func getCategoryByKey(k int) string {
+
+	outcome := ""
+
+	for _, c := range categories {
+		if c.key == k {
+			outcome = c.value
+		}
+	}
+	return outcome
+}
