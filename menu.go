@@ -126,7 +126,8 @@ func redirectTo(menu string, selected rune) {
 		showAddItemScreen()
 	case rune('4'):
 		// modify item
-		fmt.Println("You have selected 4")
+		// fmt.Println("You have selected 4")
+		showUpdateItemScreen()
 	case rune('5'):
 		// delete item
 		// fmt.Println("You have selected 5")

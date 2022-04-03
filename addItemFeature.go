@@ -73,6 +73,8 @@ func showAddItemScreen() {
 		}
 	}
 
+	fmt.Println("")
+
 	// infinite loop #3 : input prompt -> unit cost
 	for {
 		fmt.Println("How much does it cost per unit ($)?")
