@@ -24,7 +24,7 @@ type ItemInfo struct {
 }
 
 // declare a slice to cache the items data
-var shoppingList = []Item{}
+// var shoppingList = []Item{}
 var shoppingCart map[string]ItemInfo
 
 /*
@@ -86,4 +86,16 @@ func updateShoppingListItem(k string, u ItemInfo) (bool, error) {
 */
 func deleteItem(k string) {
 	delete(shoppingCart, k)
+}
+
+/*
+	function to print the current data set in the shopping cart
+*/
+func printShoppingListData() {
+
+	for k, v := range shoppingCart {
+		fmt.Printf("%s", k)
+		fmt.Printf(" - %v \n", v)
+	}
+
 }

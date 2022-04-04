@@ -133,7 +133,8 @@ func redirectTo(menu string, selected rune) {
 		// fmt.Println("You have selected 5")
 		showDeleteItemScreen()
 	case rune('6'):
-		fmt.Println("You have selected 6")
+		// fmt.Println("You have selected 6")
+		printShoppingListData()
 	case rune('7'):
 		//add category
 		// fmt.Println("You have selected 7")
