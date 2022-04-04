@@ -80,6 +80,7 @@ func getItemsByCategory(m map[string]ItemInfo) []string {
 func printTotalCostByCategory(m map[string]ItemInfo) {
 
 	var response rune
+	var activeMenu string = "REPORTS"
 
 	clearScreen()
 
@@ -88,13 +89,6 @@ func printTotalCostByCategory(m map[string]ItemInfo) {
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
 	fmt.Println("")
 
-	// var mItemCatUnitCost map[int]float64
-	// mItemCatUnitCost = make(map[int]float64)
-
-	// for _, v := range m {
-	// 	mItemCatUnitCost[v.category] += (v.unitCost * float64(v.quantity))
-	// }
-
 	mCatTotalCost := getTotalCostByCategory(m)
 	for key, tc := range mCatTotalCost {
 		fmt.Printf("%s : $ ", getCategoryByKey(key))
@@ -102,19 +96,21 @@ func printTotalCostByCategory(m map[string]ItemInfo) {
 	}
 	fmt.Println("")
 	for {
-		fmt.Println("Press 0 to return to previous menu:")
+		fmt.Printf("Press 0 to return to previous menu: ")
 		response = getInput()
 
 		if response == rune('0') {
-			showReportsMenu()
 			break
 		}
 	}
+
+	menuHandler(&activeMenu)
 }
 
 func printItemsByCategory(m map[string]ItemInfo) {
 
 	var response rune
+	var activeMenu string = "REPORTS"
 
 	clearScreen()
 
@@ -129,13 +125,14 @@ func printItemsByCategory(m map[string]ItemInfo) {
 	fmt.Println("")
 
 	for {
-		fmt.Println("Press 0 to return to previous menu:")
+		fmt.Printf("Press 0 to return to previous menu: ")
 		response = getInput()
 
 		if response == rune('0') {
-			showReportsMenu()
-
 			break
 		}
 	}
+
+	menuHandler(&activeMenu)
+
 }
