@@ -1,9 +1,24 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
+	"strings"
 )
+
+/*
+** function to get an input (string) that has space between word
+ */
+func getInputString() string {
+	inputString := bufio.NewReader(os.Stdin)
+	line, err := inputString.ReadString('\n')
+	if err != nil {
+		panic(err)
+	}
+	return strings.TrimSuffix(line, "\n")
+}
 
 /*
 	function to show the screen for
@@ -33,7 +48,8 @@ func showAddItemScreen() {
 	// infinit loop #1: input prompt -> name
 	for {
 		fmt.Println("What is the name of the NEW item ?")
-		fmt.Scanln(&name)
+		name = getInputString()
+
 		if hasPassed, message := inputNotEmptyCheck(&name, "Name"); !hasPassed {
 			fmt.Println(message)
 		} else {
