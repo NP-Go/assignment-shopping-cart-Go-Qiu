@@ -79,6 +79,8 @@ func getItemsByCategory(m map[string]ItemInfo) []string {
 
 func printTotalCostByCategory(m map[string]ItemInfo) {
 
+	var response rune
+
 	clearScreen()
 
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
@@ -99,14 +101,41 @@ func printTotalCostByCategory(m map[string]ItemInfo) {
 		fmt.Printf("%0.2f \n", tc)
 	}
 	fmt.Println("")
+	for {
+		fmt.Println("Press 0 to return to previous menu:")
+		response = getInput()
 
+		if response == rune('0') {
+			showReportsMenu()
+			break
+		}
+	}
 }
 
 func printItemsByCategory(m map[string]ItemInfo) {
 
+	var response rune
+
+	clearScreen()
+
+	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
+	fmt.Println("+ Report - List of Items by Category   +")
+	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
+	fmt.Println("")
 	itemsList := getItemsByCategory(shoppingCart)
 	for _, item := range itemsList {
 		fmt.Println(item)
 	}
 	fmt.Println("")
+
+	for {
+		fmt.Println("Press 0 to return to previous menu:")
+		response = getInput()
+
+		if response == rune('0') {
+			showReportsMenu()
+
+			break
+		}
+	}
 }
