@@ -25,7 +25,9 @@ func showUpdateItemScreen() {
 	// infinit loop #1: input prompt -> name
 	for {
 		fmt.Println("Which item do you want to modify ?")
-		fmt.Scanln(&name)
+		// fmt.Scanln(&name)
+		name = getInputString()
+
 		if hasPassed, message := inputNotEmptyCheck(&name, "Name"); !hasPassed {
 			fmt.Println(message)
 		} else if existed := inputExistCheck(shoppingCart, name); !existed {

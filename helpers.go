@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"os"
 	"os/exec"
 	"runtime"
@@ -244,4 +245,16 @@ func containsString(s []string, v string) bool {
 		}
 	}
 	return found
+}
+
+/*
+** function to get an input (string) that has space between word
+ */
+func getInputString() string {
+	inputString := bufio.NewReader(os.Stdin)
+	line, err := inputString.ReadString('\n')
+	if err != nil {
+		panic(err)
+	}
+	return strings.TrimSuffix(line, "\n")
 }
