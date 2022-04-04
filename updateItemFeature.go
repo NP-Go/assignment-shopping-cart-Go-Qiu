@@ -9,6 +9,7 @@ import (
 func showUpdateItemScreen() {
 
 	var name string
+	var newName string = ""
 	var category string
 	var quantity string
 	var unitCost string
@@ -43,6 +44,19 @@ func showUpdateItemScreen() {
 	fmt.Printf("Category is %s -  ", getCategoryByKey(shoppingCart[name].category))
 	fmt.Printf("Units is %d -  ", shoppingCart[name].quantity)
 	fmt.Printf("Unit Cost is $ %0.2f\n", shoppingCart[name].unitCost)
+	fmt.Println("")
+
+	// infinite loop #1: input prompt -> name
+	for {
+		fmt.Printf("Enter new Name for current item : (Press 'ENTER' to accept %s)\n", name)
+		newName = getInputString()
+		if len(strings.TrimSpace(newName)) == 0 {
+			newName = name
+			fmt.Println(newName)
+		}
+		break
+	}
+
 	fmt.Println("")
 
 	// input prompt -> category (integer value)
@@ -113,7 +127,15 @@ func showUpdateItemScreen() {
 		}
 	}
 
-	shoppingCart[name] = verifiedInput
+	if newName == name {
+		shoppingCart[name] = verifiedInput
+	} else {
+		// not the same.  need handling
+		shoppingCart[newName] = verifiedInput
+		deleteItem(name)
+	}
+
+	// shoppingCart[name] = verifiedInput
 	fmt.Println("")
 
 	returnToPrevious("MAIN")
