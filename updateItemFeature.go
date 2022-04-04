@@ -28,6 +28,9 @@ func showUpdateItemScreen() {
 		fmt.Scanln(&name)
 		if hasPassed, message := inputNotEmptyCheck(&name, "Name"); !hasPassed {
 			fmt.Println(message)
+		} else if existed := inputExistCheck(shoppingCart, name); !existed {
+			fmt.Println("Item is not found !")
+			fmt.Println("")
 		} else {
 			// passed.  exit from this infinite loop
 			break
@@ -107,7 +110,26 @@ func showUpdateItemScreen() {
 			break
 		}
 	}
+
+	shoppingCart[name] = verifiedInput
 	fmt.Println("")
 
+	returnToPrevious("MAIN")
+
 	//
+}
+
+/*
+	function to check if a specific item
+	exist in the shopping list
+*/
+func inputExistCheck(m map[string]ItemInfo, name string) bool {
+	outcome := false
+	for k, _ := range m {
+		if k == strings.TrimSpace(name) {
+			outcome = true
+		}
+
+	}
+	return outcome
 }

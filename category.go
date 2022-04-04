@@ -58,6 +58,8 @@ func showAddCategoryScreen() {
 			break
 		}
 		fmt.Println("")
+
+		returnToPrevious("MAIN")
 	}
 
 }

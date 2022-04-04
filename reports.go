@@ -79,9 +79,6 @@ func getItemsByCategory(m map[string]ItemInfo) []string {
 
 func printTotalCostByCategory(m map[string]ItemInfo) {
 
-	var response rune
-	var activeMenu string = "REPORTS"
-
 	clearScreen()
 
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
@@ -95,22 +92,11 @@ func printTotalCostByCategory(m map[string]ItemInfo) {
 		fmt.Printf("%0.2f \n", tc)
 	}
 	fmt.Println("")
-	for {
-		fmt.Printf("Press 0 to return to previous menu: ")
-		response = getInput()
 
-		if response == rune('0') {
-			break
-		}
-	}
-
-	menuHandler(&activeMenu)
+	returnToPrevious("REPORTS")
 }
 
 func printItemsByCategory(m map[string]ItemInfo) {
-
-	var response rune
-	var activeMenu string = "REPORTS"
 
 	clearScreen()
 
@@ -124,15 +110,6 @@ func printItemsByCategory(m map[string]ItemInfo) {
 	}
 	fmt.Println("")
 
-	for {
-		fmt.Printf("Press 0 to return to previous menu: ")
-		response = getInput()
-
-		if response == rune('0') {
-			break
-		}
-	}
-
-	menuHandler(&activeMenu)
+	returnToPrevious("REPORTS")
 
 }

@@ -162,3 +162,19 @@ func redirectTo(menu string, selected rune) {
 	}
 
 }
+
+func returnToPrevious(previousMenu string) {
+	var response rune
+	activeMenu := previousMenu
+
+	for {
+		fmt.Printf("Press 0 to return to previous menu: ")
+		response = getInput()
+
+		if response == rune('0') {
+			break
+		}
+	}
+
+	menuHandler(&activeMenu)
+}

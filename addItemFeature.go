@@ -12,6 +12,7 @@ import (
 func showAddItemScreen() {
 
 	// variables to capture the input from user (via stdin)
+
 	name := ""
 	category := ""
 	quantity := ""
@@ -101,11 +102,8 @@ func showAddItemScreen() {
 	fmt.Printf("Item          : %s \n", name)
 	fmt.Printf("Units         : %d \n", shoppingCart[name].quantity)
 	fmt.Printf("Unit Cost ($) : %0.2f \n", shoppingCart[name].unitCost)
+	fmt.Println("")
+
+	returnToPrevious("MAIN")
 
 }
-
-/*
-	function to execute checks on the specified entries
-	to ensure that input (from user via stdin) matches
-	the defined rules."
-*/

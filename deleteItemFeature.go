@@ -35,8 +35,11 @@ func showDeleteItemScreen() {
 				deleteItem(name)
 				fmt.Println("")
 				fmt.Printf("Deleted %s from the Shopping List.", name)
+				fmt.Println("")
 			}
 			break
 		}
 	}
+
+	returnToPrevious("MAIN")
 }

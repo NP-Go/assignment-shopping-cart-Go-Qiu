@@ -51,12 +51,25 @@ func getShoppingList() map[string]ItemInfo {
 
 func showShoppingList() {
 
+	clearScreen()
+
+	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
+	fmt.Println("+ Shopping List Contents               +")
+	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
+	fmt.Println("")
+
 	for key, item := range shoppingCart {
+
 		fmt.Printf("Category: %s - ", getCategoryByKey(item.category))
 		fmt.Printf("Item: %s ", key)
 		fmt.Printf("Quantity: %d ", item.quantity)
-		fmt.Printf("Unit Cost: %f\n", item.unitCost)
+		fmt.Printf("Unit Cost: $ %0.2f\n", item.unitCost)
+		fmt.Println("")
+
 	}
+
+	returnToPrevious("MAIN")
+
 }
 
 /*
@@ -87,9 +100,17 @@ func deleteItem(k string) {
 */
 func printShoppingListData() {
 
+	clearScreen()
+
+	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
+	fmt.Println("+ Print Current Data in Shopping List  +")
+	fmt.Println("++++++++++++++++++++++++++++++++++++++++")
+	fmt.Println("")
+
 	for k, v := range shoppingCart {
 		fmt.Printf("%s", k)
 		fmt.Printf(" - %v \n", v)
 	}
-
+	println("")
+	returnToPrevious("MAIN")
 }
