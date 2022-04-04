@@ -1,10 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 type CategoryTotalCost struct {
 	category  int
 	totalCost float64
+}
+
+type Item struct {
+	category int
+	name     string
+	quantity int
+	unitCost float64
+}
+
+type ItemWithCategory struct {
+	category string
+	name     string
+	quantity string
+	unitCost float64
 }
 
 /*
@@ -20,9 +38,43 @@ func getTotalCostByCategory(m map[string]ItemInfo) map[int]float64 {
 	for _, uc := range m {
 
 		tc[uc.category] += uc.unitCost * float64(uc.quantity)
-
 	}
 	return tc
+}
+
+func getItemsByCategory(m map[string]ItemInfo) []string {
+
+	var mCat map[int]string
+	mCat = make(map[int]string)
+
+	var itemsList []string
+
+	// loop through the shopping cart map
+	// to create a map of categories (with associated Item data as string)
+	for key, info := range m {
+
+		categoryName := getCategoryByKey(info.category)
+		itemAsString := "Category : " + categoryName + " - "
+		itemAsString += "Item : " + key + " "
+		itemAsString += "Quantity : " + strconv.Itoa(info.quantity) + " "
+		itemAsString += "Unit Cost : $ " + strconv.FormatFloat(info.unitCost, 'f', 2, 64)
+
+		if len(strings.TrimSpace(mCat[info.category])) == 0 {
+			mCat[info.category] += itemAsString
+		} else {
+			itemAsString = ";" + itemAsString
+			mCat[info.category] += itemAsString
+		}
+	}
+
+	// loop through the map of categories
+	// to build a slice of Items sorted by categories
+	for _, items := range mCat {
+
+		i := strings.Split(items, ";")
+		itemsList = append(itemsList, i...)
+	}
+	return itemsList
 }
 
 func printTotalCostByCategory(m map[string]ItemInfo) {
@@ -48,4 +100,13 @@ func printTotalCostByCategory(m map[string]ItemInfo) {
 	}
 	fmt.Println("")
 
+}
+
+func printItemsByCategory(m map[string]ItemInfo) {
+
+	itemsList := getItemsByCategory(shoppingCart)
+	for _, item := range itemsList {
+		fmt.Println(item)
+	}
+	fmt.Println("")
 }

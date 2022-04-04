@@ -123,6 +123,7 @@ func redirectTo(menu string, selected rune) {
 			printTotalCostByCategory(shoppingCart)
 		case rune('2'):
 			// generate reports
+			printItemsByCategory(shoppingCart)
 		default:
 			fmt.Println("Exited Application.")
 		}

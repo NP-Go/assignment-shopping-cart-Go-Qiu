@@ -10,12 +10,6 @@ const (
 )
 
 // struct for Item data
-type Item struct {
-	category int
-	name     string
-	quantity int
-	unitCost float64
-}
 
 type ItemInfo struct {
 	category int
