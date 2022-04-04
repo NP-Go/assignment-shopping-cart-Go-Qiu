@@ -44,7 +44,7 @@ func main() {
 	}
 
 	// act on the valid choice
-
+	// fmt.Println(activeMenu)
 	redirectTo(activeMenu, choice)
 	//
 }

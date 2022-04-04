@@ -50,6 +50,7 @@ func showReportsMenu() {
 	fmt.Println("3. Main Menu")
 	fmt.Println("")
 	fmt.Printf("Choose your report : ")
+
 }
 
 /*
@@ -113,33 +114,50 @@ func getInput() rune {
 	data handlers
 */
 func redirectTo(menu string, selected rune) {
-	switch selected {
-	case rune('1'):
-		// view entire Shopping List
-		// fmt.Println("You have selected 1")
-		showShoppingList()
-	case rune('2'):
-		// generate reports
-	case rune('3'):
-		// add item
-		// fmt.Println("You have selected 3")
-		showAddItemScreen()
-	case rune('4'):
-		// modify item
-		// fmt.Println("You have selected 4")
-		showUpdateItemScreen()
-	case rune('5'):
-		// delete item
-		// fmt.Println("You have selected 5")
-		showDeleteItemScreen()
-	case rune('6'):
-		// fmt.Println("You have selected 6")
-		printShoppingListData()
-	case rune('7'):
-		//add category
-		// fmt.Println("You have selected 7")
-		showAddCategoryScreen()
-	default:
-		fmt.Println("Exited Application.")
+
+	if menu == "REPORTS" {
+		switch selected {
+		case rune('1'):
+			// view entire Shopping List
+			// fmt.Println("You have selected 1")
+			printTotalCostByCategory(shoppingCart)
+		case rune('2'):
+			// generate reports
+		default:
+			fmt.Println("Exited Application.")
+		}
+		//
+	} else {
+		// MAIN
+		switch selected {
+		case rune('1'):
+			// view entire Shopping List
+			showShoppingList()
+		case rune('2'):
+			// generate reports
+		case rune('3'):
+			// add item
+			// fmt.Println("You have selected 3")
+			showAddItemScreen()
+		case rune('4'):
+			// modify item
+			// fmt.Println("You have selected 4")
+			showUpdateItemScreen()
+		case rune('5'):
+			// delete item
+			// fmt.Println("You have selected 5")
+			showDeleteItemScreen()
+		case rune('6'):
+			// fmt.Println("You have selected 6")
+			printShoppingListData()
+		case rune('7'):
+			//add category
+			// fmt.Println("You have selected 7")
+			showAddCategoryScreen()
+		default:
+			fmt.Println("Exited Application.")
+		}
+		//
 	}
+
 }
